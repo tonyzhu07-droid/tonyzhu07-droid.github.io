@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tony Zhu | Electrical Engineering Portfolio</title>
+  <meta name="description" content="Tony Zhu – Electrical Engineering student at the University of Waterloo. Embedded systems, PCB design, C++, IoT projects." />
+
+  <!-- SEO & Social -->
+  <meta property="og:title" content="Tony Zhu | Electrical Engineering" />
+  <meta property="og:description" content="Embedded systems, PCB design, C++, and IoT projects." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #020617;
+      --panel: #020617;
+      --card: #0f172a;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #22d3ee;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #020617, #000);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    header h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.25rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #020617;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(56,189,248,0.25);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid #1e293b;
+      color: var(--text);
+      box-shadow: none;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+
+    section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #0b1220, #020617);
+      border: 1px solid #1e293b;
+      border-radius: 20px;
+      padding: 1.75rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .card span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    ul { padding-left: 1.25rem; margin-top: 0.75rem; }
+    li { margin-bottom: 0.5rem; }
+
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      color: var(--muted);
+      border-top: 1px solid #1e293b;
+    }
+
+    @media (max-width: 768px) {
+      header { min-height: auto; padding-top: 6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Tony Zhu</h1>
+  <p>Electrical Engineering student at the University of Waterloo specializing in embedded systems, PCB design, and C++ firmware development.</p>
+  <nav>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+    <a class="btn" href="Resume_v.7.pdf" download>Download Resume</a>
+    <a class="btn secondary" href="https://www.linkedin.com/in/tony-zhu-393122367">LinkedIn</a>
+  </div>
+</header>
+
+<section id="projects">
+  <h2>Featured Projects</h2>
+  <div class="grid">
+
+    <div class="card project-card">
+      <img src="images/ultrasonic.jpg" alt="Ultrasonic Security System" />
+      <h3>Ultrasonic Distance Security System</h3>
+      <span>C++, Arduino, Embedded Systems</span>
+      <ul>
+        <li>Finite state machine architecture with IR-controlled modes</li>
+        <li>Interrupt-driven timing to resolve sensor/LCD conflicts</li>
+        <li>Multi-stage LED and audio alerts based on proximity</li>
+      </ul>
+    </div>
+
+    <div class="card project-card">
+      <img src="images/iot-lighting.jpg" alt="WiFi Lighting System" />
+      <h3>WiFi / Website Controlled Lighting</h3>
+      <span>ESP8266, IoT, Web Control</span>
+      <ul>
+        <li>Two-node ESP8266 wireless architecture</li>
+        <li>Embedded HTTP server for real-time control</li>
+        <li>Custom RGB and flashing modes</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Technical Skills</h2>
+  <div class="grid">
+    <div class="card"><h3>Programming</h3><ul><li>C</li><li>C++</li></ul></div>
+    <div class="card"><h3>Hardware & EDA</h3><ul><li>Altium Designer</li><li>PCB Design</li><li>Arduino</li><li>AutoCAD</li></ul></div>
+    <div class="card"><h3>Tools</h3><ul><li>VS Code</li><li>CLion</li><li>Git</li><li>Office & Google Workspace</li></ul></div>
+  </div>
+</section>
+
+<section id="experience">
+  <h2>Experience</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Waterloo Aerial Robotics Group</h3>
+      <span>Design Team Member</span>
+      <ul>
+        <li>Completed PCB design bootcamp using Altium Designer</li>
+        <li>Schematic capture, component selection, and PCB layout</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Assistant Badminton Coach</h3>
+      <span>Derrick Golf & Winter Club</span>
+      <ul>
+        <li>Athlete mentorship and practice organization</li>
+        <li>Leadership and communication development</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="card">
+    <p>Email: <a href="mailto:t96zhu@uwaterloo.ca">t96zhu@uwaterloo.ca</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/tony-zhu-393122367">linkedin.com/in/tony-zhu-393122367</a></p>
+  </div>
+</section>
+
+<footer>
+  © 2025 Tony Zhu · Hosted on GitHub Pages · Custom Domain Ready
+</footer>
+
+</body>
+</html>
