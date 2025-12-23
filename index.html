@@ -6,168 +6,281 @@
   <title>Tony Zhu | Electrical Engineering Portfolio</title>
   <meta name="description" content="Tony Zhu – Electrical Engineering student at the University of Waterloo. Embedded systems, PCB design, C++, IoT projects." />
 
-  <!-- SEO & Social -->
-  <meta property="og:title" content="Tony Zhu | Electrical Engineering" />
-  <meta property="og:description" content="Embedded systems, PCB design, C++, and IoT projects." />
-  <meta property="og:type" content="website" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #020617;
-      --panel: #020617;
-      --card: #0f172a;
-      --text: #e5e7eb;
-      --muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-2: #22d3ee;
+      /* --- ROYAL PURPLE THEME --- */
+      --bg: #0a0510;                 /* Deepest Purple/Black */
+      --card-bg: rgba(30, 10, 50, 0.6); /* Translucent Royal Purple */
+      --card-border: rgba(147, 51, 234, 0.2); /* Subtle Purple Border */
+      
+      --text: #e0e0e0;
+      --muted: #a397b5;              /* Muted Lavender Grey */
+      
+      --accent-primary: #a855f7;     /* Bright Violet (Main Buttons/Links) */
+      --accent-secondary: #FFD700;   /* Gold (Hover States/Highlights) */
+      
+      --glow: rgba(168, 85, 247, 0.5); /* Purple Glow */
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Inter', system-ui, sans-serif;
     }
 
     body {
-      background: radial-gradient(circle at top, #020617, #000);
+      background-color: var(--bg);
       color: var(--text);
-      line-height: 1.65;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    /* --- Animated Tech Background --- */
+    .background-grid {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      background-image: 
+        linear-gradient(rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    }
+
+    .glow-orb {
+      position: fixed;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      /* Purple Gradient Orb */
+      background: radial-gradient(circle, rgba(126, 34, 206, 0.25), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      animation: pulse 8s infinite alternate;
+    }
+
+    /* --- Typography & Layout --- */
+    a { color: var(--accent-primary); text-decoration: none; transition: 0.3s; }
+    
+    /* Hover turns Gold */
+    a:hover { color: var(--accent-secondary); text-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+
+    h1, h2, h3 { font-family: 'Outfit', sans-serif; }
 
     header {
-      min-height: 100vh;
+      min-height: 90vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       padding: 2rem;
+      position: relative;
     }
 
     header h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 700;
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -2px;
       margin-bottom: 1rem;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      /* Gradient Text: White to Violet */
+      background: linear-gradient(135deg, #fff 0%, var(--accent-primary) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      animation: slideDown 1s ease-out;
     }
 
     header p {
-      max-width: 720px;
+      max-width: 600px;
       color: var(--muted);
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      animation: fadeIn 1.5s ease-out;
     }
 
+    /* --- Navigation --- */
     nav {
       display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 2.5rem;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      animation: fadeIn 2s ease-out;
+    }
+
+    nav a {
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+      color: var(--text);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--accent-secondary); /* Gold Underline */
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after { width: 100%; }
+
+    /* --- Buttons --- */
+    .btn-group {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      animation: slideUp 1s ease-out;
     }
 
     .btn {
-      display: inline-block;
-      padding: 0.75rem 1.25rem;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      color: #020617;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
       font-weight: 600;
-      box-shadow: 0 10px 30px rgba(56,189,248,0.25);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
     }
 
-    .btn.secondary {
-      background: transparent;
-      border: 1px solid #1e293b;
-      color: var(--text);
-      box-shadow: none;
+    .btn-primary {
+      background: var(--accent-primary);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(126, 34, 206, 0.4);
     }
 
+    .btn-primary:hover {
+      background: var(--accent-secondary);
+      color: #000; /* Black text on Gold background for readability */
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      color: white;
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(5px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--accent-primary);
+    }
+
+    /* --- Sections & Cards --- */
     section {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 5rem 1.5rem;
+      padding: 6rem 1.5rem;
     }
 
     section h2 {
-      font-size: 2.2rem;
-      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      bottom: -10px;
+      left: 0;
+      background: linear-gradient(90deg, var(--accent-primary), transparent);
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
     }
 
     .card {
-      background: linear-gradient(180deg, #0b1220, #020617);
-      border: 1px solid #1e293b;
-      border-radius: 20px;
-      padding: 1.75rem;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-5px);
+      border-color: var(--accent-secondary); /* Gold Border on Hover */
+      box-shadow: 0 10px 40px -10px rgba(126, 34, 206, 0.3);
     }
 
-    .card h3 {
-      margin-bottom: 0.5rem;
+    .card h3 { margin-bottom: 0.5rem; color: #fff; font-size: 1.4rem; }
+    
+    .card .tag { 
+      display: inline-block;
+      font-size: 0.85rem; 
+      color: var(--accent-secondary); /* Gold Tags */
+      margin-bottom: 1rem;
+      font-family: 'Outfit', monospace;
+      letter-spacing: 0.5px;
     }
 
-    .card span {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    ul { padding-left: 1.25rem; margin-top: 0.75rem; }
+    ul { padding-left: 1.2rem; margin-top: 1rem; color: #d1d5db; }
     li { margin-bottom: 0.5rem; }
 
     .project-card img {
       width: 100%;
-      height: 180px;
+      height: 200px;
       object-fit: cover;
-      border-radius: 14px;
-      margin-bottom: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--card-border);
     }
 
+    /* --- Footer --- */
     footer {
       text-align: center;
-      padding: 3rem 1.5rem;
+      padding: 4rem 1.5rem;
       color: var(--muted);
-      border-top: 1px solid #1e293b;
+      border-top: 1px solid var(--card-border);
+      font-size: 0.9rem;
     }
+
+    /* --- Animations --- */
+    @keyframes slideDown { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes pulse { 0% { opacity: 0.5; } 100% { opacity: 0.8; } }
 
     @media (max-width: 768px) {
       header { min-height: auto; padding-top: 6rem; }
+      header h1 { font-size: 3rem; }
     }
   </style>
 </head>
 <body>
 
+<div class="background-grid"></div>
+<div class="glow-orb"></div>
+
 <header>
   <h1>Tony Zhu</h1>
-  <p>Electrical Engineering student at the University of Waterloo specializing in embedded systems, PCB design, and C++ firmware development.</p>
+  <p>Electrical Engineering student at the University of Waterloo.<br>Specializing in Embedded Systems, PCB Design, and Firmware.</p>
+  
   <nav>
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
   </nav>
-  <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
-    <a class="btn" href="Resume_v.7.pdf" download>Download Resume</a>
-    <a class="btn secondary" href="https://www.linkedin.com/in/tony-zhu-393122367">LinkedIn</a>
+
+  <div class="btn-group">
+    <a class="btn btn-primary" href="Resume_v.7.pdf" download>Download Resume</a>
+    <a class="btn btn-secondary" href="https://www.linkedin.com/in/tony-zhu-393122367" target="_blank">LinkedIn Profile</a>
   </div>
 </header>
 
@@ -177,23 +290,23 @@
 
     <div class="card project-card">
       <img src="images/ultrasonic.jpg" alt="Ultrasonic Security System" />
-      <h3>Ultrasonic Distance Security System</h3>
-      <span>C++, Arduino, Embedded Systems</span>
+      <h3>Ultrasonic Security System</h3>
+      <span class="tag">C++ // ARDUINO // FSM</span>
       <ul>
-        <li>Finite state machine architecture with IR-controlled modes</li>
-        <li>Interrupt-driven timing to resolve sensor/LCD conflicts</li>
-        <li>Multi-stage LED and audio alerts based on proximity</li>
+        <li>Designed a Finite State Machine architecture with IR-controlled modes for reliable security switching.</li>
+        <li>Implemented interrupt-driven timing to resolve conflicts between ultrasonic sensors and LCD refresh rates.</li>
+        <li>Engineered multi-stage LED and audio alerts dynamically triggering based on proximity thresholds.</li>
       </ul>
     </div>
 
     <div class="card project-card">
       <img src="images/iot-lighting.jpg" alt="WiFi Lighting System" />
-      <h3>WiFi / Website Controlled Lighting</h3>
-      <span>ESP8266, IoT, Web Control</span>
+      <h3>WiFi Controlled Lighting</h3>
+      <span class="tag">ESP8266 // IOT // WEB SERVER</span>
       <ul>
-        <li>Two-node ESP8266 wireless architecture</li>
-        <li>Embedded HTTP server for real-time control</li>
-        <li>Custom RGB and flashing modes</li>
+        <li>Built a two-node wireless architecture using ESP8266 microcontrollers.</li>
+        <li>Developed an embedded HTTP server allowing real-time lighting control via any web browser.</li>
+        <li>Programmed custom RGB patterns and strobe modes for versatile user customization.</li>
       </ul>
     </div>
 
@@ -201,11 +314,33 @@
 </section>
 
 <section id="skills">
-  <h2>Technical Skills</h2>
+  <h2>Technical Stack</h2>
   <div class="grid">
-    <div class="card"><h3>Programming</h3><ul><li>C</li><li>C++</li></ul></div>
-    <div class="card"><h3>Hardware & EDA</h3><ul><li>Altium Designer</li><li>PCB Design</li><li>Arduino</li><li>AutoCAD</li></ul></div>
-    <div class="card"><h3>Tools</h3><ul><li>VS Code</li><li>CLion</li><li>Git</li><li>Office & Google Workspace</li></ul></div>
+    <div class="card">
+      <h3>Languages</h3>
+      <ul>
+        <li>C / C++ (Firmware)</li>
+        <li>Python</li>
+        <li>MATLAB</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Hardware & EDA</h3>
+      <ul>
+        <li>Altium Designer</li>
+        <li>Schematic Capture</li>
+        <li>PCB Layout</li>
+        <li>AutoCAD</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Tools</h3>
+      <ul>
+        <li>VS Code / CLion</li>
+        <li>Git / Version Control</li>
+        <li>Oscilloscopes & Logic Analyzers</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -214,34 +349,37 @@
   <div class="grid">
     <div class="card">
       <h3>Waterloo Aerial Robotics Group</h3>
-      <span>Design Team Member</span>
+      <span class="tag">DESIGN TEAM MEMBER</span>
       <ul>
-        <li>Completed PCB design bootcamp using Altium Designer</li>
-        <li>Schematic capture, component selection, and PCB layout</li>
+        <li>Completed intensive PCB design bootcamp utilizing Altium Designer.</li>
+        <li>Executed schematic capture, component selection, and PCB layout for drone sub-systems.</li>
+        <li>Collaborated on hardware debugging and validation.</li>
       </ul>
     </div>
 
     <div class="card">
-      <h3>Assistant Badminton Coach</h3>
-      <span>Derrick Golf & Winter Club</span>
+      <h3>Derrick Golf & Winter Club</h3>
+      <span class="tag">ASSISTANT BADMINTON COACH</span>
       <ul>
-        <li>Athlete mentorship and practice organization</li>
-        <li>Leadership and communication development</li>
+        <li>Mentored athletes in technique and strategy, fostering a disciplined training environment.</li>
+        <li>Developed leadership and communication skills through organizing large practice groups.</li>
       </ul>
     </div>
   </div>
 </section>
 
 <section id="contact">
-  <h2>Contact</h2>
-  <div class="card">
-    <p>Email: <a href="mailto:t96zhu@uwaterloo.ca">t96zhu@uwaterloo.ca</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/tony-zhu-393122367">linkedin.com/in/tony-zhu-393122367</a></p>
+  <h2>Get In Touch</h2>
+  <div class="card" style="text-align: center;">
+    <p style="font-size: 1.2rem; margin-bottom: 1rem;">Currently seeking 4-month Co-op opportunities.</p>
+    <a class="btn btn-primary" href="mailto:t96zhu@uwaterloo.ca">t96zhu@uwaterloo.ca</a>
+    <br><br>
+    <a href="https://www.linkedin.com/in/tony-zhu-393122367" style="color: var(--muted); font-size: 0.9rem;">Connect on LinkedIn</a>
   </div>
 </section>
 
 <footer>
-  © 2025 Tony Zhu · Hosted on GitHub Pages · Custom Domain Ready
+  © 2025 Tony Zhu · Electrical Engineering · University of Waterloo
 </footer>
 
 </body>
